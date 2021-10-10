@@ -1,0 +1,61 @@
+# universal bash profile setting
+
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+function isLinux() {
+	if [ $(uname -s) = "Linux" ]; then
+		return 0;
+	fi
+	return 1;
+}
+
+function isOSX() {
+	if [ $(uname -s) = "Darwin" ]; then
+		return 0;
+	fi
+	return 1;
+}
+
+# do not unset this function, since PS1 requires it to parse git branch
+function parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+t_black=$(tput setaf 0)
+t_red=$(tput setaf 1)
+t_green=$(tput setaf 2)
+t_yellow=$(tput setaf 3)
+t_blue=$(tput setaf 4)
+t_purple=$(tput setaf 5)
+t_cyan=$(tput setaf 6)
+t_white=$(tput setaf 7)
+t_bold=$(tput bold)
+t_reset=$(tput sgr0)
+t_underline=$(tput sgr 0 1)
+
+export PS1="\[$t_green\]\h:\[$t_yellow\]\W\\[$t_cyan\]\$(parse_git_branch)\[$t_green\]> \[$t_reset\]"
+
+export EDITOR=/usr/bin/vim
+
+if isLinux; then
+	alias ls='ls --color=auto'
+elif isOSX; then
+	alias ls='ls -G'
+else
+	echo "Error: no Linux or OSX system detected" 1>&2;
+fi
+
+alias ll="ls -lhF"
+alias la="ll -a"
+alias pingme="ping $(hostname)"
+alias ht="history | tail"
+alias hg="history | grep"
+alias fcl="fc -l"
+alias fcs="fc -s"
+alias gc="grep --color -n"
+
+
+set -o vi
+unset -f isLinux			# remove isLinux function
+unset -f isOSX				# remove isOSX function

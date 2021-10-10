@@ -1,0 +1,22 @@
+" universial config for vim 
+
+" system
+set nocompatible
+
+" display
+set nonumber
+set cursorline			" highlight current line
+set showmatch			" highlight matching [{()}]
+set splitbelow    " more natural window spit
+set splitright
+
+" control
+set tabstop=2			" tab step for display
+set softtabstop=2		" tab step for input
+syntax enable           " enable syntax processing
+
+" search 
+set hlsearch			" highlight search
+set ignorecase			" ignore case for search matching
+set smartcase			" together with set igorecase, ignore case only when all letters are in lower case
+set incsearch			" incremental search

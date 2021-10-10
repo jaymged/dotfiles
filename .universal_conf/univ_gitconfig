@@ -1,0 +1,28 @@
+[core]
+	excludesfile = ~/.universal_conf/.univ_gitignore
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+
+[push]
+	default = simple
+
+[merge]
+	conflictstyle = diff3
+
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	pr = pull --rebase
+	br = branch -al
+	ss = status -s
+	sl = status
+	ca = commit -am      # git ca "msg"
+	co = checkout
+	sts = stash save     # stash with msg, will generate stash number X, git sts "msg"
+	stl = stash list     # list stashes with stash number X 
+	sta = stash apply    # recover stash, if with number, sta stash@{X}
+	dno = diff --name-only
+	dnol = diff --name-only HEAD~1..HEAD
